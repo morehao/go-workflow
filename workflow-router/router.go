@@ -3,8 +3,8 @@ package router
 import (
 	"net/http"
 
-	config "github.com/go-workflow/go-workflow/workflow-config"
-	controller "github.com/go-workflow/go-workflow/workflow-controller"
+	config "go-workflow/workflow-config"
+	controller "go-workflow/workflow-controller"
 )
 
 // Mux 路由
@@ -27,7 +27,7 @@ func crossOrigin(h http.HandlerFunc) http.HandlerFunc {
 }
 func setMux() {
 	Mux.HandleFunc("/api/v1/workflow/", controller.Index)
-	//-------------------------流程定义----------------------
+	// -------------------------流程定义----------------------
 	Mux.HandleFunc("/api/v1/workflow/procdef/save", intercept(controller.SaveProcdef))
 	Mux.HandleFunc("/api/v1/workflow/procdef/saveByToken", intercept(controller.SaveProcdefByToken))
 	Mux.HandleFunc("/api/v1/workflow/procdef/findAll", intercept(controller.FindAllProcdefPage))
@@ -59,9 +59,9 @@ func setMux() {
 	Mux.HandleFunc("/api/v1/workflow/identitylinkHistory/findParticipant", intercept(controller.FindParticipantHistoryByProcInstID))
 
 	// ************************** 以下为废弃接口 *****************************************************
-	//**********************************************************************************************
+	// **********************************************************************************************
 	Mux.HandleFunc("/workflow/", controller.Index)
-	//-------------------------流程定义----------------------
+	// -------------------------流程定义----------------------
 	Mux.HandleFunc("/workflow/procdef/save", intercept(controller.SaveProcdef))
 	Mux.HandleFunc("/workflow/procdef/saveByToken", intercept(controller.SaveProcdefByToken))
 	Mux.HandleFunc("/workflow/procdef/findAll", intercept(controller.FindAllProcdefPage))

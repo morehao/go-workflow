@@ -1,7 +1,8 @@
 package service
 
 import (
-	"github.com/go-workflow/go-workflow/workflow-engine/model"
+	"go-workflow/workflow-engine/model"
+
 	"github.com/mumushuiding/util"
 )
 
