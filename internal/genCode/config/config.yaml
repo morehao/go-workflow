@@ -1,0 +1,53 @@
+mysql:
+  service: genCode
+  addr: 127.0.0.1:3306
+  user: root
+  password: 123456
+  database: activiti
+  charset: utf8mb4
+  timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+log:
+  service: genCode
+  level: info
+  stdout: true
+  dir: log
+  extra_keys:
+    - requestId
+
+code_gen:
+  mode: api
+  service_name: app
+  module:
+    tpl_dir: internal/resource/codeTpl/module
+    internal_app_root_dir: internal/app
+    project_root_dir: go-gin-workflow
+    description: 审批流程任务
+    api_doc_tag: 审批流程任务
+    api_group: task
+    api_prefix: /workflow/task/
+    package_name: process
+    table_name: task
+  model:
+    tpl_dir: internal/resource/codeTpl/model
+    internal_app_root_dir: internal/app
+    project_root_dir: go-gin-workflow
+    description: 身份链接历史记录表
+    package_name: process
+    table_name: identitylink_history
+  api:
+    tpl_dir: internal/resource/codeTpl/api
+    internal_app_root_dir: internal/app
+    project_root_dir: go-gin-workflow
+    description: 撤回审批流程任务
+    package_name: process
+    target_filename: proc_task.go
+    http_method: POST
+    function_name: WithDraw
+    api_doc_tag: 审批流程任务
+    api_group: process
+    api_prefix: /workflow/task/
+    api_suffix: withDraw
+    routerGroup: taskGroup

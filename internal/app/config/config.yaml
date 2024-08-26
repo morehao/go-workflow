@@ -1,0 +1,25 @@
+server:
+  name: workflow
+  port: 8099
+  env: dev
+
+log:
+  service: workflow
+  level: info
+  stdout: true
+  dir: log
+  extra_keys:
+    - requestId
+
+mysql:
+  service: workflow
+  addr: 127.0.0.1:3306
+  user: root
+  password: 123456
+  database: activiti
+  charset: utf8mb4
+  timeout: 5s
+  read_timeout: 3s
+  write_timeout: 3s
+
+
